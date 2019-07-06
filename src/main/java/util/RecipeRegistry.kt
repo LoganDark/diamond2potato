@@ -2,6 +2,7 @@ package net.logandark.diamond2potato.util
 
 import net.logandark.diamond2potato.Diamond2Potato
 import net.logandark.diamond2potato.item.*
+import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fml.common.registry.GameRegistry
 
@@ -16,7 +17,7 @@ fun registerRecipes() {
 		" S ",
 		" S ",
 		'P', Diamond2Potato.potato,
-		'S', Diamond2Potato.stick
+		'S', Items.STICK
 	)
 
 	GameRegistry.addShapedRecipe(
@@ -27,7 +28,7 @@ fun registerRecipes() {
 		" S ",
 		" S ",
 		'P', Diamond2Potato.bakedPotato,
-		'S', Diamond2Potato.stick
+		'S', Items.STICK
 	)
 
 	GameRegistry.addSmelting(ItemPotatoPickaxe, ItemStack(ItemBakedPotatoPickaxe), 0F)
@@ -40,7 +41,7 @@ fun registerRecipes() {
 		" S ",
 		" S ",
 		'P', Diamond2Potato.potato,
-		'S', Diamond2Potato.stick
+		'S', Items.STICK
 	)
 
 	GameRegistry.addShapedRecipe(
@@ -51,7 +52,7 @@ fun registerRecipes() {
 		" S ",
 		" S ",
 		'P', Diamond2Potato.potato,
-		'S', Diamond2Potato.stick
+		'S', Items.STICK
 	)
 
 	GameRegistry.addSmelting(ItemFrenchFry, ItemStack(ItemBakedFrenchFry), 0F)
@@ -71,7 +72,7 @@ fun registerRecipes() {
 		"FSF",
 		" S ",
 		'F', ItemFrenchFry,
-		'S', Diamond2Potato.stick
+		'S', Items.STICK
 	)
 
 	GameRegistry.addSmelting(ItemFrenchFryHilt, ItemStack(ItemBakedFrenchFryHilt), 0F)

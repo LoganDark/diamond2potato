@@ -34,14 +34,6 @@ object Diamond2Potato {
 	@GameRegistry.ObjectHolder("minecraft:baked_potato")
 	val bakedPotato: ItemFood = ItemFood(0, false)
 
-	@JvmStatic
-	@GameRegistry.ObjectHolder("minecraft:stick")
-	val stick: Item = Item()
-
-	@JvmStatic
-	@GameRegistry.ObjectHolder("minecraft:diamond_ore")
-	val diamondOre: ItemBlock = ItemBlock(Block(Material.AIR))
-
 	@Suppress("unused")
 	@JvmStatic
 	@Mod.EventHandler

@@ -7,6 +7,7 @@ import net.logandark.diamond2potato.`class`.ItemHoeFood
 import net.logandark.diamond2potato.util.modid
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumActionResult
 import net.minecraft.util.EnumFacing
@@ -29,7 +30,7 @@ object ItemPotatoHoe : ItemHoeFood(
 	}
 
 	override fun onItemUseFinish(stack: ItemStack, worldIn: World, entityLiving: EntityLivingBase): ItemStack {
-		this.replacementItemStack = ItemStack(Diamond2Potato.stick)
+		this.replacementItemStack = ItemStack(Items.STICK)
 
 		return super.onItemUseFinish(stack, worldIn, entityLiving)
 	}

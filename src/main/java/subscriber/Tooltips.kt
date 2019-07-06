@@ -18,16 +18,16 @@ object Tooltips {
 	@SubscribeEvent
 	fun onItemTooltip(event: ItemTooltipEvent) {
 		when (event.itemStack.item) {
-			Diamond2Potato.potato -> {
+			Diamond2Potato.potato      -> {
 				event.toolTip[0] = "§d" + event.toolTip[0]
 			}
-			Diamond2Potato.diamond -> {
+			Diamond2Potato.diamond     -> {
 				event.toolTip.add(1, "Drop or smelt for a prize. Go on...")
 			}
-			ItemPotatoPickaxe -> {
+			ItemPotatoPickaxe          -> {
 				event.toolTip.add(1, "Delicious.")
 			}
-			ItemPotatoShovel -> {
+			ItemPotatoShovel           -> {
 				event.toolTip.add(1, "Just so happens to work very effectively as a shovel...")
 			}
 			Diamond2Potato.bakedPotato -> {

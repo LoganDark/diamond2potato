@@ -20,28 +20,28 @@ object ItemChaosFragment : Item() {
 
 		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_1")) { stack, _, _ ->
 			when (stack.count) {
-				1 -> 1F
+				1    -> 1F
 				else -> 0F
 			}
 		}
 
 		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_2")) { stack, _, _ ->
 			when (stack.count) {
-				2 -> 1F
+				2    -> 1F
 				else -> 0F
 			}
 		}
 
 		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_3")) { stack, _, _ ->
 			when (stack.count) {
-				3 -> 1F
+				3    -> 1F
 				else -> 0F
 			}
 		}
 
 		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_4")) { stack, _, _ ->
 			when (stack.count) {
-				4 -> 1F
+				4    -> 1F
 				else -> 0F
 			}
 		}
