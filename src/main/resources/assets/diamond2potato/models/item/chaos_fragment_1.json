@@ -1,0 +1,6 @@
+{
+	"parent"   : "diamond2potato:item/chaos_fragment",
+	"textures" : {
+		"layer0" : "diamond2potato:items/chaos_fragment_1"
+	}
+}

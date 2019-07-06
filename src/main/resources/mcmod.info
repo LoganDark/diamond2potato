@@ -1,0 +1,14 @@
+[{
+    "modid": "diamond2potato",
+    "name": "Diamond to Potato",
+    "description": "Who needs diamonds when you have potatoes?",
+    "version": "1.0",
+    "mcversion": "1.12.2",
+    "updateUrl": "",
+    "authorList": ["LoganDark"],
+    "credits": "Forgelin",
+    "logoFile": "",
+    "screenshots": [],
+    "requiredMods": ["forgelin"],
+    "dependencies": ["forgelin"]
+  }]

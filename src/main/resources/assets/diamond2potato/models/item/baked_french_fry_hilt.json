@@ -1,0 +1,6 @@
+{
+	"parent"   : "item/handheld",
+	"textures" : {
+		"layer0" : "diamond2potato:items/baked_french_fry_hilt"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"parent"   : "item/generated",
+	"overrides": [
+		{"predicate": {"diamond2potato:chaos_fragment_1": 1}, "model": "diamond2potato:item/chaos_fragment_1"},
+		{"predicate": {"diamond2potato:chaos_fragment_2": 1}, "model": "diamond2potato:item/chaos_fragment_2"},
+		{"predicate": {"diamond2potato:chaos_fragment_3": 1}, "model": "diamond2potato:item/chaos_fragment_3"},
+		{"predicate": {"diamond2potato:chaos_fragment_4": 1}, "model": "diamond2potato:item/chaos_fragment_4"}
+	]
+}
