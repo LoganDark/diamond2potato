@@ -17,7 +17,7 @@ object ItemBakedPotatoPickaxe : ItemPickaxeFood(
 	false
 ) {
 	init {
-		translationKey = "baked_potato_pickaxe"
+		translationKey = "$modid.baked_potato_pickaxe"
 		registryName = ResourceLocation(modid, "baked_potato_pickaxe")
 		creativeTab = TabPotato
 		setAlwaysEdible()

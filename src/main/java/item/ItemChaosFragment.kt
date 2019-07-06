@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation
 // I just had to make it for myself before I knew what to tell him
 object ItemChaosFragment : Item() {
 	init {
-		translationKey = "chaos_fragment"
+		translationKey = "$modid.chaos_fragment"
 		registryName = ResourceLocation(modid, "chaos_fragment")
 		maxStackSize = 4
 

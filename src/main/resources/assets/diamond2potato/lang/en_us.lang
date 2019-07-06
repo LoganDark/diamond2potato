@@ -1,0 +1,15 @@
+itemGroup.diamond2potato=Diamond to Potato
+
+item.diamond2potato.potato_pickaxe.name=Potato Pickaxe
+item.diamond2potato.baked_potato_pickaxe.name=Baked Potato Pickaxe
+
+item.diamond2potato.potato_shovel.name=Potato on a Stick
+
+item.diamond2potato.potato_hoe.name=Potato Hoe
+
+item.diamond2potato.french_fry.name=French Fry
+item.diamond2potato.baked_french_fry.name=Baked French Fry
+item.diamond2potato.french_fry_hilt.name=French Fry Hilt
+item.diamond2potato.baked_french_fry_hilt.name=Baked French Fry Hilt
+
+item.diamond2potato.potato_furnace.name=Potato Furnace

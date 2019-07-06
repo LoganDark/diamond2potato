@@ -17,7 +17,7 @@ object ItemPotatoShovel : ItemSpadeFood(
 	false
 ) {
 	init {
-		translationKey = "potato_shovel"
+		translationKey = "$modid.potato_shovel"
 		registryName = ResourceLocation(modid, "potato_shovel")
 		creativeTab = TabPotato
 		setAlwaysEdible()

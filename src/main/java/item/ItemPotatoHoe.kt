@@ -22,7 +22,7 @@ object ItemPotatoHoe : ItemHoeFood(
 	false
 ) {
 	init {
-		translationKey = "potato_hoe"
+		translationKey = "$modid.potato_hoe"
 		registryName = ResourceLocation(modid, "potato_hoe")
 		creativeTab = TabPotato
 		setAlwaysEdible()

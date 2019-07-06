@@ -13,7 +13,7 @@ object ItemFrenchFry : ItemFood(
 	false
 ) {
 	init {
-		translationKey = "french_fry"
+		translationKey = "$modid.french_fry"
 		registryName = ResourceLocation(modid, "french_fry")
 		creativeTab = TabPotato
 	}

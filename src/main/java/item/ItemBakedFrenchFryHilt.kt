@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation
 
 object ItemBakedFrenchFryHilt : Item() {
 	init {
-		translationKey = "baked_french_fry_hilt"
+		translationKey = "$modid.baked_french_fry_hilt"
 		registryName = ResourceLocation(modid, "baked_french_fry_hilt")
 		creativeTab = TabPotato
 	}

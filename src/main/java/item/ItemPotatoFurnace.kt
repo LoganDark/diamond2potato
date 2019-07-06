@@ -22,7 +22,7 @@ import net.minecraft.world.World
 
 object ItemPotatoFurnace : Item() {
 	init {
-		translationKey = "potato_furnace"
+		translationKey = "$modid.potato_furnace"
 		registryName = ResourceLocation(modid, "potato_furnace")
 		maxStackSize = 1
 	}
