@@ -1,16 +1,14 @@
 package net.logandark.diamond2potato
 
+import net.logandark.diamond2potato.capability.FurnaceCapability
 import net.logandark.diamond2potato.gui.GuiHandler
 import net.logandark.diamond2potato.util.*
-import net.minecraft.block.Block
-import net.minecraft.block.material.Material
+import net.minecraft.init.Items
 import net.minecraft.item.Item
-import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemFood
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import net.minecraftforge.fml.common.network.NetworkRegistry
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 @Mod(
@@ -31,7 +29,8 @@ object Diamond2Potato {
 	fun onPreInitializationStep(event: FMLPreInitializationEvent) {
 		logger = event.modLog
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, GuiHandler)
+		GuiHandler.register()
+		FurnaceCapability.register()
 	}
 
 	@Suppress("unused")

@@ -1,15 +1,24 @@
 package net.logandark.diamond2potato.gui
 
-import net.logandark.diamond2potato.`class`.PotatoFurnaceState
+import net.logandark.diamond2potato.Diamond2Potato
+import net.logandark.diamond2potato.`interface`.IFurnaceCapability
 import net.logandark.diamond2potato.container.ContainerPotatoFurnace
-import net.logandark.diamond2potato.inventory.InventoryPotatoFurnace
+import net.logandark.diamond2potato.inventory.InventoryFurnaceCapabilityWrapper
+import net.logandark.diamond2potato.inventory.InventoryItemHandlerWrapper
 import net.logandark.diamond2potato.item.ItemPotatoFurnace
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.EnumHand
 import net.minecraft.world.World
+import net.minecraftforge.common.capabilities.Capability
+import net.minecraftforge.common.capabilities.CapabilityInject
 import net.minecraftforge.fml.common.network.IGuiHandler
+import net.minecraftforge.fml.common.network.NetworkRegistry
 
 object GuiHandler : IGuiHandler {
+	@JvmStatic
+	@CapabilityInject(IFurnaceCapability::class)
+	lateinit var FURNACE_CAPABILITY: Capability<IFurnaceCapability>
+
 	enum class GUIs {
 		PotatoFurnace
 	}
@@ -19,7 +28,8 @@ object GuiHandler : IGuiHandler {
 			val heldItemStack = player!!.getHeldItem(EnumHand.MAIN_HAND)
 
 			if (heldItemStack.item is ItemPotatoFurnace) {
-				val inventory = InventoryPotatoFurnace(heldItemStack)
+				val furnaceCapability = heldItemStack.getCapability(FURNACE_CAPABILITY, null)!!
+				val inventory = InventoryFurnaceCapabilityWrapper(furnaceCapability)
 
 				return GuiPotatoFurnace(player, inventory)
 			}
@@ -33,12 +43,17 @@ object GuiHandler : IGuiHandler {
 			val heldItemStack = player!!.getHeldItem(EnumHand.MAIN_HAND)
 
 			if (heldItemStack.item is ItemPotatoFurnace) {
-				val inventory = InventoryPotatoFurnace(heldItemStack)
+				val furnaceCapability = heldItemStack.getCapability(FURNACE_CAPABILITY, null)!!
+				val inventory = InventoryFurnaceCapabilityWrapper(furnaceCapability)
 
 				return ContainerPotatoFurnace(player, inventory)
 			}
 		}
 
 		return null
+	}
+
+	fun register() {
+		NetworkRegistry.INSTANCE.registerGuiHandler(Diamond2Potato, this)
 	}
 }
