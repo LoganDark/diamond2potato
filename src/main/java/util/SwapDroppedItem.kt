@@ -15,16 +15,8 @@ fun replaceEntityItem(old: EntityItem, new: EntityItem) {
 
 fun replaceDroppedItem(old: EntityItem, newItem: Item, transferDamage: Boolean = false, transferNBT: Boolean = false) {
 	val oldStack = old.item
-
-	val damage = when (transferDamage) {
-		true -> oldStack.itemDamage
-		false -> 0
-	}
-
-	val nbt = when (transferNBT) {
-		true -> oldStack.tagCompound
-		false -> NBTTagCompound()
-	}
+	val damage = if (transferDamage) oldStack.itemDamage else 0
+	val nbt = if (transferNBT) oldStack.tagCompound else NBTTagCompound()
 
 	val newStack = ItemStack(newItem, oldStack.count, damage, nbt)
 	val new = EntityItem(old.world, .0, .0, .0, newStack)
