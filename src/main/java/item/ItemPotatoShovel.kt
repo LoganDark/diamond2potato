@@ -13,8 +13,8 @@ import net.minecraft.world.World
 
 object ItemPotatoShovel : ItemSpadeFood(
 	PotatoMaterial,
-	Diamond2Potato.potato.getHealAmount(ItemStack(Diamond2Potato.potato)),
-	Diamond2Potato.potato.getSaturationModifier(ItemStack(Diamond2Potato.potato)),
+	Diamond2Potato.potatoFood.getHealAmount(ItemStack(Diamond2Potato.potatoFood)),
+	Diamond2Potato.potatoFood.getSaturationModifier(ItemStack(Diamond2Potato.potatoFood)),
 	false
 ) {
 	init {

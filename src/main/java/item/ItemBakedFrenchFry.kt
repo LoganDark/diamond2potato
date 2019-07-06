@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 
 object ItemBakedFrenchFry : ItemFood(
-	Diamond2Potato.bakedPotato.getHealAmount(ItemStack(Diamond2Potato.bakedPotato)) * 3,
-	Diamond2Potato.bakedPotato.getSaturationModifier(ItemStack(Diamond2Potato.bakedPotato)) * 3,
+	Diamond2Potato.bakedPotatoFood.getHealAmount(ItemStack(Diamond2Potato.bakedPotatoFood)) * 3,
+	Diamond2Potato.bakedPotatoFood.getSaturationModifier(ItemStack(Diamond2Potato.bakedPotatoFood)) * 3,
 	false
 ) {
 	init {

@@ -18,8 +18,8 @@ import net.minecraft.world.World
 
 object ItemPotatoHoe : ItemHoeFood(
 	PotatoMaterial,
-	Diamond2Potato.potato.getHealAmount(ItemStack(Diamond2Potato.potato)) * 2,
-	Diamond2Potato.potato.getSaturationModifier(ItemStack(Diamond2Potato.potato)) * 2,
+	Diamond2Potato.potatoFood.getHealAmount(ItemStack(Diamond2Potato.potatoFood)) * 2,
+	Diamond2Potato.potatoFood.getSaturationModifier(ItemStack(Diamond2Potato.potatoFood)) * 2,
 	false
 ) {
 	init {

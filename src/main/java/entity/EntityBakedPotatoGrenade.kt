@@ -3,6 +3,7 @@ package net.logandark.diamond2potato.entity
 import net.logandark.diamond2potato.Diamond2Potato
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 import net.minecraft.util.DamageSource
 
@@ -12,7 +13,7 @@ class EntityBakedPotatoGrenade(oldItem: EntityItem) : EntityItem(oldItem.world, 
 	private var maxTick = 100
 
 	init {
-		item = ItemStack(Diamond2Potato.bakedPotato, oldItem.item.count, oldItem.item.itemDamage)
+		item = ItemStack(Items.BAKED_POTATO, oldItem.item.count, oldItem.item.itemDamage)
 		setPickupDelay(20)
 	}
 

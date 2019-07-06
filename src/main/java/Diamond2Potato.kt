@@ -22,17 +22,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry
 )
 @Mod.EventBusSubscriber()
 object Diamond2Potato {
-	@JvmStatic
-	@GameRegistry.ObjectHolder("minecraft:diamond")
-	val diamond: Item = Item()
-
-	@JvmStatic
-	@GameRegistry.ObjectHolder("minecraft:potato")
-	val potato: ItemFood = ItemFood(0, false)
-
-	@JvmStatic
-	@GameRegistry.ObjectHolder("minecraft:baked_potato")
-	val bakedPotato: ItemFood = ItemFood(0, false)
+	val potatoFood: ItemFood = Items.POTATO as ItemFood
+	val bakedPotatoFood: ItemFood = Items.BAKED_POTATO as ItemFood
 
 	@Suppress("unused")
 	@JvmStatic

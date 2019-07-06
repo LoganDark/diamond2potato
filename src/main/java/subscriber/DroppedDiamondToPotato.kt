@@ -7,6 +7,7 @@ import net.logandark.diamond2potato.util.modid
 import net.logandark.diamond2potato.util.replaceDroppedItem
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.init.Blocks
+import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumHand
 import net.minecraftforge.event.entity.EntityJoinWorldEvent
@@ -25,8 +26,8 @@ object DroppedDiamondToPotato {
 			if (event.entity is EntityItem) {
 				val drop = event.entity as EntityItem
 
-				if (drop.item.item == Diamond2Potato.diamond) {
-					replaceDroppedItem(drop, Diamond2Potato.potato)
+				if (drop.item.item == Items.DIAMOND) {
+					replaceDroppedItem(drop, Items.POTATO)
 				}
 			}
 		}
@@ -44,8 +45,8 @@ object DroppedDiamondToPotato {
 					for (index in event.drops.indices) {
 						val drop = event.drops[index]
 
-						if (drop.item == Diamond2Potato.diamond) {
-							event.drops[index] = ItemStack(Diamond2Potato.potato, drop.count)
+						if (drop.item == Items.DIAMOND) {
+							event.drops[index] = ItemStack(Items.POTATO, drop.count)
 						}
 					}
 				}
@@ -59,9 +60,9 @@ object DroppedDiamondToPotato {
 		val entityItem = event.entityItem
 
 		when (entityItem.item.item) {
-			Diamond2Potato.diamond -> {
+			Items.DIAMOND -> {
 				if (!entityItem.world.isRemote) {
-					replaceDroppedItem(entityItem, Diamond2Potato.potato)
+					replaceDroppedItem(entityItem, Items.POTATO)
 				}
 			}
 		}

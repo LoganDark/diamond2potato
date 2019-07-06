@@ -13,8 +13,8 @@ import net.minecraft.world.World
 
 object ItemBakedPotatoPickaxe : ItemPickaxeFood(
 	PotatoMaterial,
-	Diamond2Potato.bakedPotato.getHealAmount(ItemStack(Diamond2Potato.bakedPotato)) * 3,
-	Diamond2Potato.bakedPotato.getSaturationModifier(ItemStack(Diamond2Potato.bakedPotato)) * 3,
+	Diamond2Potato.bakedPotatoFood.getHealAmount(ItemStack(Diamond2Potato.bakedPotatoFood)) * 3,
+	Diamond2Potato.bakedPotatoFood.getSaturationModifier(ItemStack(Diamond2Potato.bakedPotatoFood)) * 3,
 	false
 ) {
 	init {
