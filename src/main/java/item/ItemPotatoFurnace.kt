@@ -2,6 +2,7 @@ package net.logandark.diamond2potato.item
 
 import net.logandark.diamond2potato.Diamond2Potato
 import net.logandark.diamond2potato.`interface`.IFurnaceCapability
+import net.logandark.diamond2potato.capability.FurnaceCapability
 import net.logandark.diamond2potato.capability.FurnaceCapabilityProvider
 import net.logandark.diamond2potato.gui.GuiHandler
 import net.logandark.diamond2potato.util.modid
@@ -38,7 +39,7 @@ object ItemPotatoFurnace : Item() {
 	}
 
 	override fun initCapabilities(stack: ItemStack, nbt: NBTTagCompound?): ICapabilityProvider? {
-		return FurnaceCapabilityProvider()
+		return FurnaceCapabilityProvider(FurnaceCapability())
 	}
 
 	override fun onUpdate(stack: ItemStack, worldIn: World, entityIn: Entity, itemSlot: Int, isSelected: Boolean) {
@@ -46,4 +47,28 @@ object ItemPotatoFurnace : Item() {
 
 		furnaceCapability!!.update(worldIn.isRemote)
 	}
+
+	override fun getNBTShareTag(stack: ItemStack): NBTTagCompound? {
+		var nbtShareTag = super.getNBTShareTag(stack)
+
+		if (nbtShareTag !is NBTTagCompound) nbtShareTag = NBTTagCompound()
+
+		val furnaceCapability = stack.getCapability(FURNACE_CAPABILITY, null)!!
+
+		nbtShareTag.setTag("furnaceCapability", FurnaceCapabilityProvider(furnaceCapability).serializeNBT())
+
+		return nbtShareTag
+	}
+
+	override fun readNBTShareTag(stack: ItemStack, nbt: NBTTagCompound?) {
+		super.readNBTShareTag(stack, nbt)
+
+		val furnaceCapability = stack.getCapability(FURNACE_CAPABILITY, null)!!
+
+		if (nbt is NBTTagCompound) {
+			FurnaceCapabilityProvider(furnaceCapability).deserializeNBT(nbt)
+		}
+	}
+
+	override fun shouldCauseReequipAnimation(oldStack: ItemStack, newStack: ItemStack, slotChanged: Boolean) = !oldStack.isItemEqual(newStack) || slotChanged
 }

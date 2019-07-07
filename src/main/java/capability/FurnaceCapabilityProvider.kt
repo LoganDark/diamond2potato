@@ -7,14 +7,14 @@ import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.common.capabilities.CapabilityInject
 import net.minecraftforge.common.capabilities.ICapabilitySerializable
 
-class FurnaceCapabilityProvider : ICapabilitySerializable<NBTTagCompound> {
+class FurnaceCapabilityProvider(
+	private val furnaceCapability: IFurnaceCapability
+) : ICapabilitySerializable<NBTTagCompound> {
 	companion object {
 		@JvmStatic
 		@CapabilityInject(IFurnaceCapability::class)
 		lateinit var FURNACE_CAPABILITY: Capability<IFurnaceCapability>
 	}
-
-	private val furnaceCapability = FURNACE_CAPABILITY.defaultInstance
 
 	@Suppress("unchecked_cast")
 	override fun <T : Any?> getCapability(capability: Capability<T>, facing: EnumFacing?): T? = when (capability) {
