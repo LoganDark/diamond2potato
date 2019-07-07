@@ -7,7 +7,7 @@ import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TextComponentString
 import net.minecraftforge.items.IItemHandler
 
-open class InventoryItemHandlerWrapper(private val capabilityInstance: IItemHandler, private val displayName: String = "Container") : IInventory {
+open class InventoryItemHandlerWrapper(private val capabilityInstance: IItemHandler, private val displayName: String = "UNNAMED CONTAINER, THIS IS A BUG") : IInventory {
 	override fun clear() {
 		for (slot in 0 until capabilityInstance.slots) {
 			removeStackFromSlot(slot)

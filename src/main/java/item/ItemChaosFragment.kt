@@ -1,5 +1,6 @@
 package net.logandark.diamond2potato.item
 
+import net.logandark.diamond2potato.item.ItemChaosFragment.addPropertyOverride
 import net.logandark.diamond2potato.util.modid
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack

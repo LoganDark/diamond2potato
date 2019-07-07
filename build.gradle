@@ -15,7 +15,7 @@ group = "net.logandark" // http://maven.apache.org/guides/mini/guide-naming-conv
 archivesBaseName = "diamond2potato"
 
 minecraft {
-	version = "1.12.2-14.23.5.2768"
+	version = "1.12.2-14.23.5.2838"
 	runDir = "run"
 
 	// the mappings can be changed at any time, and must be in the following format.

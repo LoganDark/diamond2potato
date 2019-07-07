@@ -1,6 +1,5 @@
 package net.logandark.diamond2potato.entity
 
-import net.logandark.diamond2potato.Diamond2Potato
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.Items

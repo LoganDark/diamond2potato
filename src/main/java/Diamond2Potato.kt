@@ -4,12 +4,10 @@ import net.logandark.diamond2potato.capability.FurnaceCapability
 import net.logandark.diamond2potato.gui.GuiHandler
 import net.logandark.diamond2potato.util.*
 import net.minecraft.init.Items
-import net.minecraft.item.Item
 import net.minecraft.item.ItemFood
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import net.minecraftforge.fml.common.registry.GameRegistry
 
 @Mod(
 	modid = modid,

@@ -1,7 +1,6 @@
 package net.logandark.diamond2potato.capability
 
 import net.logandark.diamond2potato.`interface`.IFurnaceCapability
-import net.logandark.diamond2potato.util.logger
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.Item
@@ -29,11 +28,8 @@ class FurnaceCapability : ItemStackHandler(3), IFurnaceCapability, Capability.IS
 	override var totalCookTime = 0
 
 	override fun readNBT(capability: Capability<IFurnaceCapability>, instance: IFurnaceCapability, side: EnumFacing, nbt: NBTBase) {
-		logger!!.info("Reading NBT!!!")
-
 		if (nbt is NBTTagCompound) {
-			deserializeNBT(nbt)
-
+			instance.deserializeNBT(nbt)
 			instance.furnaceBurnTime = nbt.getInteger("BurnTime")
 			instance.currentItemBurnTime = nbt.getInteger("ItemBurnTime")
 			instance.cookTime = nbt.getInteger("CookTime")
@@ -42,14 +38,11 @@ class FurnaceCapability : ItemStackHandler(3), IFurnaceCapability, Capability.IS
 	}
 
 	override fun writeNBT(capability: Capability<IFurnaceCapability>, instance: IFurnaceCapability, side: EnumFacing): NBTBase {
-		logger!!.info("Writing NBT!!!")
-
-		val tagCompound = serializeNBT()
-
-		tagCompound.setInteger("BurnTime", furnaceBurnTime)
-		tagCompound.setInteger("ItemBurnTime", currentItemBurnTime)
-		tagCompound.setInteger("CookTime", cookTime)
-		tagCompound.setInteger("CookTimeTotal", totalCookTime)
+		val tagCompound = instance.serializeNBT()
+		tagCompound.setInteger("BurnTime", instance.furnaceBurnTime)
+		tagCompound.setInteger("ItemBurnTime", instance.currentItemBurnTime)
+		tagCompound.setInteger("CookTime", instance.cookTime)
+		tagCompound.setInteger("CookTimeTotal", instance.totalCookTime)
 
 		return tagCompound
 	}
@@ -110,15 +103,13 @@ class FurnaceCapability : ItemStackHandler(3), IFurnaceCapability, Capability.IS
 		}
 	}
 
-	override fun update() {
-		val wasBurning = isBurning()
-		var inventoryDirty = false
+	override fun update(isRemote: Boolean) {
+		if (isRemote) return
 
 		if (isBurning()) {
 			furnaceBurnTime--
 		}
 
-		//if (!world.isRemote) {
 		val itemstack = getStackInSlot(1)
 
 		if (isBurning() || !itemstack.isEmpty && !getStackInSlot(0).isEmpty) {
@@ -127,8 +118,6 @@ class FurnaceCapability : ItemStackHandler(3), IFurnaceCapability, Capability.IS
 				currentItemBurnTime = furnaceBurnTime
 
 				if (isBurning()) {
-					inventoryDirty = true
-
 					if (!itemstack.isEmpty) {
 						val item = itemstack.item
 						itemstack.shrink(1)
@@ -148,22 +137,12 @@ class FurnaceCapability : ItemStackHandler(3), IFurnaceCapability, Capability.IS
 					cookTime = 0
 					totalCookTime = getCookTime(getStackInSlot(0))
 					smeltItem()
-					inventoryDirty = true
 				}
 			} else {
 				cookTime = 0
 			}
 		} else if (!isBurning() && cookTime > 0) {
 			cookTime = MathHelper.clamp(cookTime - 2, 0, totalCookTime)
-		}
-
-		if (wasBurning != isBurning()) {
-			inventoryDirty = true
-		}
-		//}
-
-		if (inventoryDirty) {
-			//markDirty()
 		}
 	}
 
@@ -176,7 +155,7 @@ class FurnaceCapability : ItemStackHandler(3), IFurnaceCapability, Capability.IS
 
 		if (newStack.isEmpty || !newStack.isItemEqual(oldStack) || !ItemStack.areItemStackTagsEqual(newStack, oldStack)) {
 			totalCookTime = getCookTime(newStack)
-			cookTime = 0
+			// cookTime = 0
 		}
 
 		remainder

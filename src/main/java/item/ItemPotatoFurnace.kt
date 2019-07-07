@@ -44,6 +44,6 @@ object ItemPotatoFurnace : Item() {
 	override fun onUpdate(stack: ItemStack, worldIn: World, entityIn: Entity, itemSlot: Int, isSelected: Boolean) {
 		val furnaceCapability = stack.getCapability(FURNACE_CAPABILITY, null)
 
-		furnaceCapability!!.update()
+		furnaceCapability!!.update(worldIn.isRemote)
 	}
 }

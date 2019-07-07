@@ -1,6 +1,5 @@
 package net.logandark.diamond2potato.subscriber
 
-import net.logandark.diamond2potato.Diamond2Potato
 import net.logandark.diamond2potato.entity.EntityBakedPotatoGrenade
 import net.logandark.diamond2potato.util.modid
 import net.logandark.diamond2potato.util.replaceEntityItem

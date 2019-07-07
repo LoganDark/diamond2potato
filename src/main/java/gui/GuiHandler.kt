@@ -4,7 +4,6 @@ import net.logandark.diamond2potato.Diamond2Potato
 import net.logandark.diamond2potato.`interface`.IFurnaceCapability
 import net.logandark.diamond2potato.container.ContainerPotatoFurnace
 import net.logandark.diamond2potato.inventory.InventoryFurnaceCapabilityWrapper
-import net.logandark.diamond2potato.inventory.InventoryItemHandlerWrapper
 import net.logandark.diamond2potato.item.ItemPotatoFurnace
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.EnumHand

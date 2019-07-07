@@ -3,7 +3,6 @@ package net.logandark.diamond2potato.util
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
 
 fun replaceEntityItem(old: EntityItem, new: EntityItem) {
 	new.setPosition(old.posX, old.posY, old.posZ)
@@ -16,9 +15,11 @@ fun replaceEntityItem(old: EntityItem, new: EntityItem) {
 fun replaceDroppedItem(old: EntityItem, newItem: Item, transferDamage: Boolean = false, transferNBT: Boolean = false) {
 	val oldStack = old.item
 	val damage = if (transferDamage) oldStack.itemDamage else 0
-	val nbt = if (transferNBT) oldStack.tagCompound else NBTTagCompound()
 
-	val newStack = ItemStack(newItem, oldStack.count, damage, nbt)
+	val newStack = ItemStack(newItem, oldStack.count, damage)
+
+	if (transferNBT) newStack.tagCompound = oldStack.tagCompound
+
 	val new = EntityItem(old.world, .0, .0, .0, newStack)
 
 	replaceEntityItem(old, new)

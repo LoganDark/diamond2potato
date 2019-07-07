@@ -1,6 +1,5 @@
 package net.logandark.diamond2potato.subscriber
 
-import net.logandark.diamond2potato.Diamond2Potato
 import net.logandark.diamond2potato.item.ItemBakedPotatoPickaxe
 import net.logandark.diamond2potato.item.ItemPotatoPickaxe
 import net.logandark.diamond2potato.util.modid

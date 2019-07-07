@@ -1,9 +1,11 @@
 package net.logandark.diamond2potato.`interface`
 
 import net.minecraft.item.ItemStack
-import net.minecraftforge.items.IItemHandler
+import net.minecraft.nbt.NBTTagCompound
+import net.minecraftforge.common.util.INBTSerializable
+import net.minecraftforge.items.IItemHandlerModifiable
 
-interface IFurnaceCapability : IItemHandler {
+interface IFurnaceCapability : IItemHandlerModifiable, INBTSerializable<NBTTagCompound> {
 	var furnaceBurnTime: Int
 	var currentItemBurnTime: Int
 	var cookTime: Int
@@ -31,6 +33,8 @@ interface IFurnaceCapability : IItemHandler {
 
 	/**
 	 * Should be called every tick. Updates all the state
+	 *
+	 * @return Whether the NBT data should be re-saved
 	 */
-	fun update()
+	fun update(isRemote: Boolean)
 }
