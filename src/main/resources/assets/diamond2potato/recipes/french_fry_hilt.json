@@ -1,0 +1,18 @@
+{
+	"type"    : "minecraft:crafting_shaped",
+	"pattern" : [
+		"FSF",
+		" S "
+	],
+	"key"     : {
+		"P" : {
+			"item" : "minecraft:potato"
+		},
+		"S" : {
+			"item" : "minecraft:stick"
+		}
+	},
+	"result"  : {
+		"item" : "diamond2potato:french_fry_hilt"
+	}
+}

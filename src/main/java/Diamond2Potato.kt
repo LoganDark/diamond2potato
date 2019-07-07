@@ -2,7 +2,11 @@ package net.logandark.diamond2potato
 
 import net.logandark.diamond2potato.capability.FurnaceCapability
 import net.logandark.diamond2potato.gui.GuiHandler
-import net.logandark.diamond2potato.util.*
+import net.logandark.diamond2potato.registry.SmeltingRegistry
+import net.logandark.diamond2potato.util.logger
+import net.logandark.diamond2potato.util.modid
+import net.logandark.diamond2potato.util.name
+import net.logandark.diamond2potato.util.version
 import net.minecraft.init.Items
 import net.minecraft.item.ItemFood
 import net.minecraftforge.fml.common.Mod
@@ -38,6 +42,6 @@ object Diamond2Potato {
 		@Suppress("unused_parameter")
 		event: FMLInitializationEvent
 	) {
-		registerRecipes()
+		SmeltingRegistry.registerSmelting()
 	}
 }

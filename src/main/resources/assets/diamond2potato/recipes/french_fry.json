@@ -1,0 +1,14 @@
+{
+	"type"    : "minecraft:crafting_shaped",
+	"pattern" : [
+		"PPP"
+	],
+	"key"     : {
+		"P" : {
+			"item" : "minecraft:potato"
+		}
+	},
+	"result"  : {
+		"item" : "diamond2potato:french_fry"
+	}
+}

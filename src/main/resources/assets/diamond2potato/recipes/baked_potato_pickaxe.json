@@ -1,0 +1,19 @@
+{
+	"type"    : "minecraft:crafting_shaped",
+	"pattern" : [
+		"PPP",
+		" S ",
+		" S "
+	],
+	"key"     : {
+		"P" : {
+			"item" : "minecraft:baked_potato"
+		},
+		"S" : {
+			"item" : "minecraft:stick"
+		}
+	},
+	"result"  : {
+		"item" : "diamond2potato:baked_potato_pickaxe"
+	}
+}
