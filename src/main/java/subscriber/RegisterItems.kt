@@ -13,18 +13,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 @Suppress("unused")
 @Mod.EventBusSubscriber(modid = modid)
 object RegisterItems {
-	private val items = arrayListOf(
-		ItemPotatoPickaxe,
-		ItemBakedPotatoPickaxe,
-		ItemPotatoShovel,
-		ItemPotatoHoe,
-		ItemFrenchFry,
-		ItemBakedFrenchFry,
-		ItemFrenchFryHilt,
-		ItemBakedFrenchFryHilt,
-		ItemChaosFragment,
-		ItemPotatoFurnace
-	)
+	private val items by lazy {
+		arrayListOf(
+			ItemPotatoPickaxe,
+			ItemBakedPotatoPickaxe,
+			ItemPotatoShovel,
+			ItemPotatoHoe,
+			ItemFrenchFry,
+			ItemBakedFrenchFry,
+			ItemFrenchFryHilt,
+			ItemBakedFrenchFryHilt,
+			ItemChaosFragment,
+			ItemPotatoFurnace
+		)
+	}
 
 	@JvmStatic
 	@SubscribeEvent
