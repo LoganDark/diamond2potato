@@ -10,10 +10,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
+@SideOnly(Side.CLIENT)
 @Suppress("unused")
 @Mod.EventBusSubscriber(modid = modid)
 object Tooltips {
-	@SideOnly(Side.CLIENT)
 	@JvmStatic
 	@SubscribeEvent
 	fun onItemTooltip(event: ItemTooltipEvent) {
