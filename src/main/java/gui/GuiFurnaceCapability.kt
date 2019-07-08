@@ -1,18 +1,20 @@
 package net.logandark.diamond2potato.gui
 
-import net.logandark.diamond2potato.container.ContainerFurnaceIInventory
+import net.logandark.diamond2potato.`interface`.IFurnaceCapability
+import net.logandark.diamond2potato.container.ContainerFurnaceCapability
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.IInventory
-import net.minecraft.tileentity.TileEntityFurnace
 import net.minecraft.util.ResourceLocation
 
-open class GuiFurnaceIInventory(
+open class GuiFurnaceCapability(
 	player: EntityPlayer,
 	private val playerInv: IInventory,
-	private val furnaceInv: IInventory
-) : GuiContainer(ContainerFurnaceIInventory(player, playerInv, furnaceInv)) {
+	private val furnace: IFurnaceCapability,
+	private val name: String = "Furnace Capability",
+	private val furnaceContainer: ContainerFurnaceCapability = ContainerFurnaceCapability(player, playerInv, furnace)
+) : GuiContainer(furnaceContainer) {
 	private val furnaceGuiTextures = ResourceLocation("textures/gui/container/furnace.png")
 
 	/**
@@ -28,9 +30,8 @@ open class GuiFurnaceIInventory(
 	 * Draw the foreground layer for the GuiContainer (everything in front of the items)
 	 */
 	override fun drawGuiContainerForegroundLayer(mouseX: Int, mouseY: Int) {
-		val s = furnaceInv.displayName.unformattedText
-		fontRenderer.drawString(s, xSize / 2 - fontRenderer.getStringWidth(s) / 2, 6, 4210752)
-		fontRenderer.drawString(playerInv.displayName.unformattedText, 8, ySize - 96 + 2, 4210752)
+		fontRenderer.drawString(name, xSize / 2 - fontRenderer.getStringWidth(name) / 2, 6, 0x404040)
+		fontRenderer.drawString(playerInv.displayName.unformattedText, 8, ySize - 96 + 2, 0x404040)
 	}
 
 	/**
@@ -43,7 +44,7 @@ open class GuiFurnaceIInventory(
 		val j = (height - ySize) / 2
 		drawTexturedModalRect(i, j, 0, 0, xSize, ySize)
 
-		if (TileEntityFurnace.isBurning(furnaceInv)) {
+		if (furnace.isBurning()) {
 			val k = getBurnLeftScaled(13)
 			drawTexturedModalRect(i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1)
 		}
@@ -53,18 +54,18 @@ open class GuiFurnaceIInventory(
 	}
 
 	private fun getCookProgressScaled(pixels: Int): Int {
-		val i = furnaceInv.getField(2)
-		val j = furnaceInv.getField(3)
+		val i = furnaceContainer.cookTime
+		val j = furnaceContainer.totalCookTime
 		return if (j != 0 && i != 0) i * pixels / j else 0
 	}
 
 	private fun getBurnLeftScaled(pixels: Int): Int {
-		var i = furnaceInv.getField(1)
+		var i = furnaceContainer.currentItemBurnTime
 
 		if (i == 0) {
 			i = 200
 		}
 
-		return furnaceInv.getField(0) * pixels / i
+		return furnaceContainer.furnaceBurnTime * pixels / i
 	}
 }

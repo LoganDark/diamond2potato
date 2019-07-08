@@ -1,24 +1,33 @@
 package net.logandark.diamond2potato.container
 
+import net.logandark.diamond2potato.`interface`.IFurnaceCapability
+import net.logandark.diamond2potato.slot.SlotItemHandlerFurnaceFuel
+import net.logandark.diamond2potato.slot.SlotItemHandlerFurnaceOutput
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.*
+import net.minecraft.inventory.Container
+import net.minecraft.inventory.IInventory
+import net.minecraft.inventory.Slot
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.FurnaceRecipes
 import net.minecraft.tileentity.TileEntityFurnace
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import net.minecraftforge.items.SlotItemHandler
 
-open class ContainerFurnaceIInventory(player: EntityPlayer, private val playerInventory: IInventory, furnaceInventory: IInventory) : Container() {
-	private var tileFurnace: IInventory = furnaceInventory
-	private var cookTime: Int = 0
-	private var totalCookTime: Int = 0
-	private var furnaceBurnTime: Int = 0
-	private var currentItemBurnTime: Int = 0
+open class ContainerFurnaceCapability(
+	private val player: EntityPlayer,
+	playerInventory: IInventory,
+	private val furnace: IFurnaceCapability
+) : Container() {
+	var cookTime: Int = 0
+	var totalCookTime: Int = 0
+	var furnaceBurnTime: Int = 0
+	var currentItemBurnTime: Int = 0
 
 	init {
-		addSlotToContainer(Slot(furnaceInventory, 0, 56, 17))
-		addSlotToContainer(SlotFurnaceFuel(furnaceInventory, 1, 56, 53))
-		addSlotToContainer(SlotFurnaceOutput(player, furnaceInventory, 2, 116, 35))
+		addSlotToContainer(SlotItemHandler(furnace, 0, 56, 17))
+		addSlotToContainer(SlotItemHandlerFurnaceFuel(furnace, 1, 56, 53))
+		addSlotToContainer(SlotItemHandlerFurnaceOutput(player, furnace, 2, 116, 35))
 
 		for (i in 0..2) {
 			for (j in 0..8) {
@@ -31,11 +40,6 @@ open class ContainerFurnaceIInventory(player: EntityPlayer, private val playerIn
 		}
 	}
 
-	override fun addListener(listener: IContainerListener) {
-		super.addListener(listener)
-		listener.sendAllWindowProperties(this, tileFurnace)
-	}
-
 	/**
 	 * Looks for changes made in the container, sends them to every listener.
 	 */
@@ -45,44 +49,47 @@ open class ContainerFurnaceIInventory(player: EntityPlayer, private val playerIn
 		for (i in listeners.indices) {
 			val containerListener = listeners[i]
 
-			if (cookTime != tileFurnace.getField(2)) {
-				containerListener.sendWindowProperty(this, 2, tileFurnace.getField(2))
+			if (cookTime != furnace.cookTime) {
+				containerListener.sendWindowProperty(this, 2, furnace.cookTime)
 			}
 
-			if (furnaceBurnTime != tileFurnace.getField(0)) {
-				containerListener.sendWindowProperty(this, 0, tileFurnace.getField(0))
+			if (furnaceBurnTime != furnace.furnaceBurnTime) {
+				containerListener.sendWindowProperty(this, 0, furnace.furnaceBurnTime)
 			}
 
-			if (currentItemBurnTime != tileFurnace.getField(1)) {
-				containerListener.sendWindowProperty(this, 1, tileFurnace.getField(1))
+			if (currentItemBurnTime != furnace.currentItemBurnTime) {
+				containerListener.sendWindowProperty(this, 1, furnace.currentItemBurnTime)
 			}
 
-			if (totalCookTime != tileFurnace.getField(3)) {
-				containerListener.sendWindowProperty(this, 3, tileFurnace.getField(3))
+			if (totalCookTime != furnace.totalCookTime) {
+				containerListener.sendWindowProperty(this, 3, furnace.totalCookTime)
 			}
 		}
 
-		cookTime = tileFurnace.getField(2)
-		furnaceBurnTime = tileFurnace.getField(0)
-		currentItemBurnTime = tileFurnace.getField(1)
-		totalCookTime = tileFurnace.getField(3)
+		cookTime = furnace.cookTime
+		furnaceBurnTime = furnace.furnaceBurnTime
+		currentItemBurnTime = furnace.currentItemBurnTime
+		totalCookTime = furnace.totalCookTime
 	}
 
 	@SideOnly(Side.CLIENT)
 	override fun updateProgressBar(id: Int, data: Int) {
-		tileFurnace.setField(id, data)
+		when (id) {
+			2 -> cookTime = data
+			0 -> furnaceBurnTime = data
+			1 -> currentItemBurnTime = data
+			3 -> totalCookTime = data
+		}
 	}
 
 	/**
 	 * Determines whether supplied player can use this container
 	 */
-	override fun canInteractWith(playerIn: EntityPlayer): Boolean {
-		return tileFurnace.isUsableByPlayer(playerIn)
-	}
+	override fun canInteractWith(playerIn: EntityPlayer) = playerIn == player
 
 	/**
-	 * Handle when the stack in slot `index` is shift-clicked. Normally this moves the stack between the player
-	 * inventory and the other inventory(s).
+	 * Handle when the stack in slot `index` is shift-clicked. Normally this
+	 * moves the stack between the player inventory and the other inventory(s).
 	 */
 	override fun transferStackInSlot(playerIn: EntityPlayer, index: Int): ItemStack {
 		var currentStack = ItemStack.EMPTY

@@ -3,7 +3,6 @@ package net.logandark.diamond2potato.gui
 import net.logandark.diamond2potato.Diamond2Potato
 import net.logandark.diamond2potato.`interface`.IFurnaceCapability
 import net.logandark.diamond2potato.container.ContainerPotatoFurnace
-import net.logandark.diamond2potato.inventory.InventoryFurnaceCapabilityWrapper
 import net.logandark.diamond2potato.inventory.InventoryProtectedStack
 import net.logandark.diamond2potato.item.ItemPotatoFurnace
 import net.minecraft.entity.player.EntityPlayer
@@ -28,10 +27,9 @@ object GuiHandler : IGuiHandler {
 			val heldItemStack = player!!.getHeldItem(EnumHand.MAIN_HAND)
 
 			if (heldItemStack.item is ItemPotatoFurnace) {
-				val furnaceCapability = heldItemStack.getCapability(FURNACE_CAPABILITY, null)!!
-				val furnaceInventory = InventoryFurnaceCapabilityWrapper(furnaceCapability)
+				val furnace = heldItemStack.getCapability(FURNACE_CAPABILITY, null)!!
 
-				return GuiPotatoFurnace(player, furnaceInventory, heldItemStack)
+				return GuiPotatoFurnace(player, furnace, heldItemStack)
 			}
 		}
 
@@ -43,11 +41,10 @@ object GuiHandler : IGuiHandler {
 			val heldItemStack = player!!.getHeldItem(EnumHand.MAIN_HAND)
 
 			if (heldItemStack.item is ItemPotatoFurnace) {
-				val furnaceCapability = heldItemStack.getCapability(FURNACE_CAPABILITY, null)!!
+				val furnace = heldItemStack.getCapability(FURNACE_CAPABILITY, null)!!
 				val playerInventory = InventoryProtectedStack(player.inventory, heldItemStack)
-				val furnaceInventory = InventoryFurnaceCapabilityWrapper(furnaceCapability)
 
-				return ContainerPotatoFurnace(player, playerInventory, furnaceInventory)
+				return ContainerPotatoFurnace(player, playerInventory, furnace)
 			}
 		}
 

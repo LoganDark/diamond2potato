@@ -6,7 +6,8 @@ import net.minecraft.inventory.IInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.util.text.ITextComponent
 
-class InventoryProtectedStack(private val playerInventory: InventoryPlayer, val protectedStack: ItemStack) : IInventory {
+class InventoryProtectedStack(private val playerInventory: InventoryPlayer,
+                              private val protectedStack: ItemStack) : IInventory {
 	override fun clear() = throw NotImplementedError("This would remove the protected item")
 	override fun closeInventory(player: EntityPlayer) = playerInventory.closeInventory(player)
 	override fun decrStackSize(index: Int, count: Int): ItemStack =
