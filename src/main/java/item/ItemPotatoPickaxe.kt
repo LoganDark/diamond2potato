@@ -5,6 +5,7 @@ import net.logandark.diamond2potato.TabPotato
 import net.logandark.diamond2potato.`class`.ItemPickaxeFood
 import net.logandark.diamond2potato.material.PotatoMaterial
 import net.logandark.diamond2potato.util.modid
+import net.minecraft.client.util.ITooltipFlag
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
@@ -28,5 +29,11 @@ object ItemPotatoPickaxe : ItemPickaxeFood(
 		this.replacementItemStack = ItemStack(Items.STICK)
 
 		return super.onItemUseFinish(stack, worldIn, entityLiving)
+	}
+
+	override fun addInformation(stack: ItemStack, worldIn: World?, tooltip: MutableList<String>, flagIn: ITooltipFlag) {
+		super.addInformation(stack, worldIn, tooltip, flagIn)
+
+		tooltip.add(1, "Delicious.")
 	}
 }
