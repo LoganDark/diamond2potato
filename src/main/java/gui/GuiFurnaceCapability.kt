@@ -54,18 +54,18 @@ open class GuiFurnaceCapability(
 	}
 
 	private fun getCookProgressScaled(pixels: Int): Int {
-		val i = furnaceContainer.cookTime
-		val j = furnaceContainer.totalCookTime
+		val i = furnace.cookTime
+		val j = furnace.totalCookTime
 		return if (j != 0 && i != 0) i * pixels / j else 0
 	}
 
 	private fun getBurnLeftScaled(pixels: Int): Int {
-		var i = furnaceContainer.currentItemBurnTime
+		var currentItemBurnTime = furnace.currentItemBurnTime
 
-		if (i == 0) {
-			i = 200
+		if (currentItemBurnTime == 0) {
+			currentItemBurnTime = 200
 		}
 
-		return furnaceContainer.furnaceBurnTime * pixels / i
+		return furnace.furnaceBurnTime * pixels / currentItemBurnTime
 	}
 }

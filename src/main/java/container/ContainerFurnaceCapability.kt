@@ -75,10 +75,10 @@ open class ContainerFurnaceCapability(
 	@SideOnly(Side.CLIENT)
 	override fun updateProgressBar(id: Int, data: Int) {
 		when (id) {
-			2 -> cookTime = data
-			0 -> furnaceBurnTime = data
-			1 -> currentItemBurnTime = data
-			3 -> totalCookTime = data
+			2 -> furnace.cookTime = data
+			0 -> furnace.furnaceBurnTime = data
+			1 -> furnace.currentItemBurnTime = data
+			3 -> furnace.totalCookTime = data
 		}
 	}
 
