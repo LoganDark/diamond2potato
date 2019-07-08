@@ -12,9 +12,8 @@ open class GuiFurnaceCapability(
 	player: EntityPlayer,
 	private val playerInv: IInventory,
 	private val furnace: IFurnaceCapability,
-	private val name: String = "Furnace Capability",
-	private val furnaceContainer: ContainerFurnaceCapability = ContainerFurnaceCapability(player, playerInv, furnace)
-) : GuiContainer(furnaceContainer) {
+	private val name: String = "Furnace Capability"
+) : GuiContainer(ContainerFurnaceCapability(player, playerInv, furnace)) {
 	private val furnaceGuiTextures = ResourceLocation("textures/gui/container/furnace.png")
 
 	/**
