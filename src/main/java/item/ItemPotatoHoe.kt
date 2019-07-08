@@ -1,9 +1,9 @@
 package net.logandark.diamond2potato.item
 
 import net.logandark.diamond2potato.Diamond2Potato
-import net.logandark.diamond2potato.PotatoMaterial
 import net.logandark.diamond2potato.TabPotato
 import net.logandark.diamond2potato.`class`.ItemHoeFood
+import net.logandark.diamond2potato.material.PotatoMaterial
 import net.logandark.diamond2potato.util.modid
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer

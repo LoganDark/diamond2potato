@@ -1,4 +1,4 @@
-package net.logandark.diamond2potato
+package net.logandark.diamond2potato.material
 
 import net.minecraft.item.Item
 import net.minecraftforge.common.util.EnumHelper

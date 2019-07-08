@@ -1,9 +1,9 @@
 package net.logandark.diamond2potato.item
 
-import net.logandark.diamond2potato.BakedPotatoMaterial
 import net.logandark.diamond2potato.Diamond2Potato
 import net.logandark.diamond2potato.TabPotato
 import net.logandark.diamond2potato.`class`.ItemPickaxeFood
+import net.logandark.diamond2potato.material.PotatoMaterial
 import net.logandark.diamond2potato.util.modid
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.init.Items
@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 
 object ItemPotatoPickaxe : ItemPickaxeFood(
-	BakedPotatoMaterial,
+	PotatoMaterial,
 	Diamond2Potato.potatoFood.getHealAmount(ItemStack(Diamond2Potato.potatoFood)) * 3,
 	Diamond2Potato.potatoFood.getSaturationModifier(ItemStack(Diamond2Potato.potatoFood)) * 3,
 	false
