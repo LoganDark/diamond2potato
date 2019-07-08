@@ -22,8 +22,9 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent
 	modid = modid,
 	name = name,
 	version = version,
+	acceptedMinecraftVersions = "[1.12.2]",
 	modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter",
-	dependencies = "required-after: forgelin"
+	dependencies = "required:forge@[14.23.5.2768,);required-after: forgelin"
 )
 @Mod.EventBusSubscriber()
 object Diamond2Potato {
