@@ -9,7 +9,6 @@ fun replaceEntityItem(old: EntityItem, new: EntityItem) {
 	new.motionX = old.motionX
 	new.motionY = old.motionY
 	new.motionZ = old.motionZ
-	new.setPickupDelay(40)
 	old.world.spawnEntity(new)
 	old.setDead()
 }
@@ -23,6 +22,7 @@ fun replaceDroppedItem(old: EntityItem, newItem: Item, transferDamage: Boolean =
 	if (transferNBT) newStack.tagCompound = oldStack.tagCompound
 
 	val new = EntityItem(old.world, .0, .0, .0, newStack)
+	new.setPickupDelay(40)
 
 	replaceEntityItem(old, new)
 }
