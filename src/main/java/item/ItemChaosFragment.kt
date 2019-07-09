@@ -18,33 +18,7 @@ object ItemChaosFragment : Item() {
 		registryName = ResourceLocation(modid, "chaos_fragment")
 		maxStackSize = 4
 
-		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_1")) { stack, _, _ ->
-			when (stack.count) {
-				1    -> 1F
-				else -> 0F
-			}
-		}
-
-		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_2")) { stack, _, _ ->
-			when (stack.count) {
-				2    -> 1F
-				else -> 0F
-			}
-		}
-
-		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_3")) { stack, _, _ ->
-			when (stack.count) {
-				3    -> 1F
-				else -> 0F
-			}
-		}
-
-		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_4")) { stack, _, _ ->
-			when (stack.count) {
-				4    -> 1F
-				else -> 0F
-			}
-		}
+		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment")) { stack, _, _ -> stack.count / 4F }
 	}
 
 	override fun hasEffect(stack: ItemStack) = true
