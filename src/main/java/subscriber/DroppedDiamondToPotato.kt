@@ -55,7 +55,7 @@ object DroppedDiamondToPotato {
 
 	@JvmStatic
 	@SubscribeEvent
-	fun onBlockDrop(event: ItemTossEvent) {
+	fun onItemToss(event: ItemTossEvent) {
 		val entityItem = event.entityItem
 
 		when (entityItem.item.item) {
