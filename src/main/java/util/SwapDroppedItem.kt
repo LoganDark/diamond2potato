@@ -6,7 +6,9 @@ import net.minecraft.item.ItemStack
 
 fun replaceEntityItem(old: EntityItem, new: EntityItem) {
 	new.setPosition(old.posX, old.posY, old.posZ)
-	new.setVelocity(old.motionX, old.motionY, old.motionZ)
+	new.motionX = old.motionX
+	new.motionY = old.motionY
+	new.motionZ = old.motionZ
 	new.setPickupDelay(40)
 	old.world.spawnEntity(new)
 	old.setDead()

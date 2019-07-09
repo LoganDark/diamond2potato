@@ -3,9 +3,8 @@ package net.logandark.diamond2potato.subscriber
 import net.logandark.diamond2potato.entity.EntityBakedPotatoGrenade
 import net.logandark.diamond2potato.util.modid
 import net.logandark.diamond2potato.util.replaceEntityItem
-import net.minecraft.entity.item.EntityItem
 import net.minecraft.init.Items
-import net.minecraftforge.event.entity.EntityJoinWorldEvent
+import net.minecraftforge.event.entity.item.ItemTossEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
@@ -14,24 +13,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 object EntityBakedPotatoGrenadeSpawner {
 	@JvmStatic
 	@SubscribeEvent
-	fun onEntityJoinedWorld(event: EntityJoinWorldEvent) {
-		if (!event.world.isRemote) {
-			val entity = event.entity
+	fun onItemToss(event: ItemTossEvent) {
+		val item = event.entityItem
+		val world = item.world
 
-			if (entity is EntityItem) {
-				if (entity !is EntityBakedPotatoGrenade && entity.item.item == Items.BAKED_POTATO) {
-					val bakedPotatoGrenade = EntityBakedPotatoGrenade(entity)
+		if (!world.isRemote) {
+			if (item !is EntityBakedPotatoGrenade && item.item.item == Items.BAKED_POTATO) {
+				val bakedPotatoGrenade = EntityBakedPotatoGrenade(item)
 
-					replaceEntityItem(entity, bakedPotatoGrenade)
+				replaceEntityItem(item, bakedPotatoGrenade)
 
-					val velocityMultiplier = 1.0 + (bakedPotatoGrenade.item.count.toDouble() / 32)
-
-					bakedPotatoGrenade.setVelocity(
-						bakedPotatoGrenade.motionX * velocityMultiplier,
-						bakedPotatoGrenade.motionY * velocityMultiplier,
-						bakedPotatoGrenade.motionZ * velocityMultiplier
-					)
-				}
+				val velocityMultiplier = 1.0 + (bakedPotatoGrenade.item.count.toDouble() / 32)
+				bakedPotatoGrenade.motionX *= velocityMultiplier
+				bakedPotatoGrenade.motionY *= velocityMultiplier
+				bakedPotatoGrenade.motionZ *= velocityMultiplier
 			}
 		}
 	}
