@@ -3,6 +3,7 @@ buildscript {
 		jcenter()
 		maven { url "http://files.minecraftforge.net/maven" }
 	}
+
 	dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
 	}
@@ -94,3 +95,34 @@ processResources {
 		exclude 'mcmod.info'
 	}
 }
+
+def runCommand(List<String> command, List<Integer> acceptableExitValues = [0]) {
+	println("Running command: ${command.join(' ')}")
+
+	def proc = new ProcessBuilder(command).start()
+	proc.waitFor()
+	def exitValue = proc.exitValue()
+
+	if (acceptableExitValues.size() > 0 && !acceptableExitValues.contains(exitValue)) {
+		throw new GradleException(
+			"Command returned exit code ${exitValue}. Expected one of ${acceptableExitValues}." +
+				"\n\nCommand:\n$command"
+		)
+	}
+
+	return proc
+}
+
+task buildZip << {
+	println("Generating build zip")
+
+	def commitHash = runCommand(["git", "rev-parse", "--short", "HEAD"]).text.trim()
+	def devStr = runCommand(["git", "diff-index", "--quiet", "HEAD", "--"], []).exitValue() == 1 ? "-DIRTY" : ""
+	def zipPath = "$distsDir/$archivesBaseName-$version-${commitHash + devStr}.zip"
+
+	runCommand(["mkdir", "-p", distsDir.toString()])
+	runCommand(["sh", "-c", "cd $libsDir && zip $zipPath *.jar".toString()], [0, 12])
+	println("Zip created at $zipPath")
+}
+
+build.finalizedBy(buildZip)
