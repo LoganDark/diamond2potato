@@ -35,8 +35,7 @@ object DroppedDiamondToPotato {
 	@JvmStatic
 	@SubscribeEvent
 	fun onBlockDrop(event: BlockEvent.HarvestDropsEvent) {
-		val player = event.harvester ?: return
-		val tool = player.getHeldItem(EnumHand.MAIN_HAND).item
+		val tool = event.harvester?.getHeldItem(EnumHand.MAIN_HAND)?.item
 
 		when (event.state.block) {
 			Blocks.DIAMOND_ORE -> {
