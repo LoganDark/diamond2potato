@@ -5,8 +5,8 @@
 		" S "
 	],
 	"key"     : {
-		"P" : {
-			"item" : "minecraft:potato"
+		"F" : {
+			"item" : "diamond2potato:french_fry"
 		},
 		"S" : {
 			"item" : "minecraft:stick"
