@@ -1,6 +1,5 @@
 package net.logandark.diamond2potato.item
 
-import net.logandark.diamond2potato.item.ItemChaosFragment.addPropertyOverride
 import net.logandark.diamond2potato.util.modid
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -19,28 +18,28 @@ object ItemChaosFragment : Item() {
 		registryName = ResourceLocation(modid, "chaos_fragment")
 		maxStackSize = 4
 
-		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_1")) { stack, _, _ ->
+		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_1")) { stack, _, _ ->
 			when (stack.count) {
 				1    -> 1F
 				else -> 0F
 			}
 		}
 
-		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_2")) { stack, _, _ ->
+		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_2")) { stack, _, _ ->
 			when (stack.count) {
 				2    -> 1F
 				else -> 0F
 			}
 		}
 
-		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_3")) { stack, _, _ ->
+		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_3")) { stack, _, _ ->
 			when (stack.count) {
 				3    -> 1F
 				else -> 0F
 			}
 		}
 
-		addPropertyOverride(ResourceLocation(modid, "chaos_fragment_4")) { stack, _, _ ->
+		this.addPropertyOverride(ResourceLocation(modid, "chaos_fragment_4")) { stack, _, _ ->
 			when (stack.count) {
 				4    -> 1F
 				else -> 0F
