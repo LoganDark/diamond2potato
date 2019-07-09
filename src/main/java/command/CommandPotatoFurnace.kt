@@ -23,7 +23,7 @@ class CommandPotatoFurnace : CommandBase() {
 		manager.executeCommand(sender, "clear")
 		manager.executeCommand(sender, "give @p ${ItemPotatoFurnace.registryName}")
 		manager.executeCommand(sender, "give @p coal 64")
-		manager.executeCommand(sender, "give @p potato 64")
+		manager.executeCommand(sender, "give @p gold_ore 64")
 
 		notifyCommandListener(sender, this, "Set up potato furnace with support items")
 	}
